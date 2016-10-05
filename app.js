@@ -16,7 +16,7 @@ serv.listen(port,ip);
 //serv.listen(2000);
 console.log("Server Started");
 
-var io = require('socket.io')(serv,{});
+/*var io = require('socket.io')(serv,{});
 var socketList = [];
 
 var player = function(id){
@@ -148,4 +148,4 @@ setInterval(function(){
 		socket.emit('update',data(i));
 		//console.log("posx: "+data());
 	}
-},20);
+},20);*/
