@@ -7,7 +7,8 @@ app.get('/',function(req,res){
 });
 app.use('/client',express.static(__dirname+'/client'));
 
-serv.listen(2000);
+serv.listen(process.env.OPENSHIFT_NODEJS_PORT,process.env.OPENSHIFT_NODEJS_IP);
+//serv.listen(2000);
 console.log("Server Started");
 
 var io = require('socket.io')(serv,{});
