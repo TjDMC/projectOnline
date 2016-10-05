@@ -14,7 +14,7 @@ var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 serv.listen(port,ip);
 console.log("Server Started");
 
-var io = require('socket.io')(serv,{});
+/*var io = require('socket.io')(serv,{});
 var socketList = [];
 
 var player = function(id){
@@ -140,7 +140,7 @@ io.on('connection', function(socket){
 	})
 
 });
-/*setInterval(function(){
+setInterval(function(){
 	for(var i in socketList){
 		socket = socketList[i];
 		socket.emit('update',data(i));
