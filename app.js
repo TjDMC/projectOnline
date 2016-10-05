@@ -4,7 +4,8 @@ var http = require("http");
 var serv = http.createServer(app);
 
 app.get('/',function(req,res){
-	res.sendFile(__dirname+'/client/index.html');
+	//res.sendFile(__dirname+'/client/index.html');
+	res.send("hello world");
 });
 app.use(express.static('client'));
 
