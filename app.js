@@ -1,13 +1,17 @@
 var express = require('express');
 var app = express();
-var serv = require('http').Server(app);
+var http = require("http");
+var serv = http.createServer(app);
 
 app.get('/',function(req,res){
 	res.sendFile(__dirname+'/client/index.html');
 });
-app.use('/client',express.static(__dirname+'/client'));
+app.use(express.static('client'));
 
-serv.listen(process.env.OPENSHIFT_NODEJS_PORT,process.env.OPENSHIFT_NODEJS_IP);
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+serv.listen(port,ip);
 //serv.listen(2000);
 console.log("Server Started");
 
