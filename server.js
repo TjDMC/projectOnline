@@ -20,7 +20,7 @@ console.log("port: "+port);
 console.log("Server Started");
 
 
-/*var ioreq = require('socket.io');
+var ioreq = require('socket.io');
 var io = ioreq(serv,{});
 var socketList = [];
 
@@ -153,4 +153,4 @@ setInterval(function(){
 		socket.emit('update',data(i));
 	}
 },20);
-*/
+
