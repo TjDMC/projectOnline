@@ -10,7 +10,7 @@ app.get('/',function(req,res){
 app.use('/client',express.static(__dirname+'/client'));
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 serv.listen(port,ip);
 //serv.listen('2000');
