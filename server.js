@@ -5,7 +5,8 @@ var serv = http.createServer(app);
 
 app.get('/',function(req,res){
 	//res.sendFile(__dirname+'/client/index.html');
-	res.sendFile('index.html');
+	//res.sendFile('index.html');
+	res.send('testificate');
 });
 //app.use('/client',express.static(__dirname+'/client'));
 
