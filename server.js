@@ -5,7 +5,8 @@ var serv = http.createServer(app);
 
 app.get('/',function(req,res){
 	//res.sendFile(__dirname+'/client/index.html');
-	res.sendFile(__dirname+'/client/index.html');
+	//res.sendFile(__dirname+'/client/index.html');
+	res.send('hello!');
 });
 app.use('/client',express.static(__dirname+'/client'));
 
@@ -15,8 +16,10 @@ var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 serv.listen(port,ip);
 //serv.listen('2000');
 console.log("Server Started");
+console.log("ip: "+ip);
+console.log("port: "+port);
 
-var ioreq = require('socket.io');
+/*var ioreq = require('socket.io');
 var io = ioreq(serv,{});
 var socketList = [];
 
@@ -149,3 +152,4 @@ setInterval(function(){
 		socket.emit('update',data(i));
 	}
 },20);
+*/
