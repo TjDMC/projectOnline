@@ -15,7 +15,7 @@ var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 serv.listen(port,ip);
 //serv.listen('2000');
-console.log("Server Started");
+/*console.log("Server Started");
 
 var ioreq = require('socket.io');
 var io = ioreq(serv,{});
@@ -149,4 +149,4 @@ setInterval(function(){
 		socket = socketList[i];
 		socket.emit('update',data(i));
 	}
-},20);
+},20);*/
