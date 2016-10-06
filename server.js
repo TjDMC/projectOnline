@@ -15,9 +15,10 @@ var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 serv.listen(port,ip);
 //serv.listen('2000');
-console.log("Server Started");
 console.log("ip: "+ip);
 console.log("port: "+port);
+console.log("Server Started");
+
 
 /*var ioreq = require('socket.io');
 var io = ioreq(serv,{});
