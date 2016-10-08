@@ -144,10 +144,9 @@ io.on('connection', function(socket){
 
 });
 setInterval(function(){
-	var dat = data(i);
 	for(var i in socketList){
 		socket = socketList[i];
-		socket.emit('update',dat);
+		socket.emit('update',data(i));
 	}
 },20);
 

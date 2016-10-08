@@ -2,8 +2,6 @@
 
 <head>
 <script src = "/socket.io/socket.io.js"></script>
-
-<script src = "js/script.js" type="text/javascript"></script>
 </head>
 
 <body style="margin:0">
@@ -32,28 +30,29 @@
 	var itr = 0;
 	window.addEventListener('keydown', function (e) {
         input.keys[e.keyCode] = true;
-		socket.emit('input',input);
     });
     window.addEventListener('keyup', function (e) {
         input.keys[e.keyCode] = false; 
-		socket.emit('input',input);
     });
 	window.addEventListener('mousemove', function(e){
 		itr++;
 		input.mouseX = e.pageX ;
 		input.mouseY = e.pageY ;
-		
-		if(itr%3==0){
-			socket.emit('input',input);
-			itr=0;
-		}
 	});
+    
+    setInterval(function(){
+        var dat = data(i);
+        for(var i in socketList){
+            socket = socketList[i];
+            socket.emit('input',input);
+        }
+    },20);
+    
 	socket.on('update',function(data){
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
 		ctx.clearRect(0,0,canvas.width,canvas.height);
 		for(i in data){
-			//ctx.fillRect(data[i].posX,data[i].posY,30,30);
 			ctx.save();
 			ctx.translate(data[i].posX+15,data[i].posY+15);
 			ctx.rotate(data[i].angle);
@@ -62,8 +61,7 @@
 			ctx.restore();
 			debug.innerHTML = data[i].ownX+ " "+data[i].ownY+ " "+data[i].angle;
 		}
-		//ctx.fillStyle = "green";
-		//ctx.fillRect(data.posX,data.posY,10,10);
+
 	});
 </script>
 
