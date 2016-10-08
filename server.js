@@ -140,7 +140,6 @@ io.on('connection', function(socket){
 		p.input.mouseY = inp.mouseY;
 		p.updateInput();
 		p.updateRotation();
-		console.log(p.input.x+" "+p.input.y+" "+p.input.mouseX+" "+p.input.mouseY);
 	})
 
 });
