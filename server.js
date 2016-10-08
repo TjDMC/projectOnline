@@ -101,7 +101,7 @@ var data = function(id){
 	
 	var pack = [];
 	for(var i in playerList){
-		playerList[i].updatePos();
+		playerList[id].updatePos();
 		pack.push({
 			posX:playerList[i].posX,
 			posY:playerList[i].posY,
