@@ -41,11 +41,7 @@
 	});
     
     setInterval(function(){
-        var dat = data(i);
-        for(var i in socketList){
-            socket = socketList[i];
-            socket.emit('input',input);
-        }
+        socket.emit('input',input);
     },20);
     
 	socket.on('update',function(data){
