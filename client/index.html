@@ -30,22 +30,24 @@
 	var itr = 0;
 	window.addEventListener('keydown', function (e) {
         input.keys[e.keyCode] = true;
-		socket.emit('input',input);
     });
     window.addEventListener('keyup', function (e) {
         input.keys[e.keyCode] = false; 
-		socket.emit('input',input);
     });
 	window.addEventListener('mousemove', function(e){
 		itr++;
 		input.mouseX = e.pageX ;
 		input.mouseY = e.pageY ;
-		
-		if(itr%3==0){
-			socket.emit('input',input);
-			itr=0;
-		}
 	});
+    
+    setInterval(function(){
+        var dat = data(i);
+        for(var i in socketList){
+            socket = socketList[i];
+            socket.emit('input',input);
+        }
+    },20);
+    
 	socket.on('update',function(data){
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
