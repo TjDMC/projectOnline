@@ -4,9 +4,7 @@ var http = require("http");
 var serv = http.createServer(app);
 
 app.get('/',function(req,res){
-	//res.sendFile(__dirname+'/client/index.html');
 	res.sendFile(__dirname+'/client/index.html');
-	//res.send('hello!');
 });
 app.use('/client',express.static(__dirname+'/client'));
 
@@ -14,7 +12,6 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 serv.listen(port,ip);
-//serv.listen('2000');
 console.log("ip: "+ip);
 console.log("port: "+port);
 console.log("Server Started");
@@ -148,9 +145,10 @@ io.on('connection', function(socket){
 
 });
 setInterval(function(){
+	var dat = data(i);
 	for(var i in socketList){
 		socket = socketList[i];
-		socket.emit('update',data(i));
+		socket.emit('update',dat);
 	}
 },20);
 
