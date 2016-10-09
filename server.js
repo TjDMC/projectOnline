@@ -30,11 +30,13 @@ var player = function(id){
 		posY:0,
 		id:id,
 		keys:[],
+        mouse:[],
 		input:{
 			x:0,
 			y:0,
 			mouseX:0,
-			mouseY:0
+			mouseY:0,
+            firing:false
 		}
 	}
 	
@@ -54,6 +56,15 @@ var player = function(id){
 		}else{
 			self.input.y=0;
 		}
+        
+        if(self.keys[32]||self.mouse[0]){
+            self.input.firing = true;
+        }else{
+            self.input.firing = false;
+        }
+        
+        //console.log(self.input.x+" "+self.input.y+" "+self.input.firing);
+        
 	}
 	
 	self.updatePos = function(){
@@ -138,6 +149,7 @@ io.on('connection', function(socket){
 		p.keys = inp.keys;
 		p.input.mouseX = inp.mouseX;
 		p.input.mouseY = inp.mouseY;
+        p.mouse = inp.mouse;
 		p.updateInput();
 		p.updateRotation();
 	})
@@ -149,4 +161,3 @@ setInterval(function(){
 		socket.emit('update',data(i));
 	}
 },20);
-
