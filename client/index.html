@@ -40,25 +40,47 @@
 		input.mouseY = e.pageY ;
 	});
     
-    setInterval(function(){
-        socket.emit('input',input);
-    },20);
     
-	socket.on('update',function(data){
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-		ctx.clearRect(0,0,canvas.width,canvas.height);
-		for(i in data){
-			ctx.save();
-			ctx.translate(data[i].posX+15,data[i].posY+15);
-			ctx.rotate(data[i].angle);
-			ctx.translate(-(data[i].posX+15),-(data[i].posY+15));
-			ctx.fillRect(data[i].posX,data[i].posY,30,30);
-			ctx.restore();
-			debug.innerHTML = data[i].ownX+ " "+data[i].ownY+ " "+data[i].angle;
-		}
-
+    var data;
+    var oldData = [];
+    
+	socket.on('update',function(d){
+        data = d;
 	});
+    
+    //var first = true;
+    function update(){
+    
+        socket.emit('input',input);
+        canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        
+        /*if(first){
+            oldData = data;
+            first = false;
+        }*/
+        
+        for(i in oldData){
+            
+            var posX = (3*oldData[i].posX+data[i].posX)/4;
+            var posY = (3*oldData[i].posY+data[i].posY)/4;
+        
+			ctx.save();
+			ctx.translate(posX+15,posY+15);
+			ctx.rotate(data[i].angle);
+			ctx.translate(-(posX+15),-(posY+15));
+			ctx.fillRect( posX , posY ,30,30 );
+			ctx.restore();
+			debug.innerHTML = oldData[i].ownX+ " "+oldData[i].ownY+ " "+oldData[i].angle;
+		}
+        
+        oldData = data;
+    
+    }
+
+    setInterval(update,20);
+    
 </script>
 
 
