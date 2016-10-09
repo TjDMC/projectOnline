@@ -25,7 +25,8 @@
 	var input = {
 		keys:[],
 		mouseX:0,
-		mouseY:0
+		mouseY:0,
+        mouse:[]
 	}
 	var itr = 0;
 	window.addEventListener('keydown', function (e) {
@@ -39,6 +40,12 @@
 		input.mouseX = e.pageX ;
 		input.mouseY = e.pageY ;
 	});
+    window.addEventListener('mousedown',function(e){
+        input.mouse[e.button] = true;
+    });
+    window.addEventListener('mouseup',function(e){
+        input.mouse[e.button] = false;
+    });
     
     
     var data;
@@ -48,18 +55,12 @@
         data = d;
 	});
     
-    //var first = true;
     function update(){
     
         socket.emit('input',input);
         canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
         ctx.clearRect(0,0,canvas.width,canvas.height);
-        
-        /*if(first){
-            oldData = data;
-            first = false;
-        }*/
         
         for(i in oldData){
             
