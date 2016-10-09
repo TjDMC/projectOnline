@@ -100,8 +100,8 @@ var bullet = function(id){
 var data = function(id){
 	
 	var pack = [];
+    playerList[id].updatePos();
 	for(var i in playerList){
-		playerList[id].updatePos();
 		pack.push({
 			posX:playerList[i].posX,
 			posY:playerList[i].posY,
